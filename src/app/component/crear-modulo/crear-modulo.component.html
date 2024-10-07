@@ -1,9 +1,88 @@
-<div class="card">
-    <div class="card-body">
-      <h5 class="card-title">AGREGAR NUEVO MÓDULO</h5>
-      <form #addModulForm="ngForm" (ngSubmit)="onSubmit(addModulForm)" novalidate>
-        <!-- Formulario con validaciones similares al que ya proporcionaste -->
-      </form>
+<form [formGroup]="newModulForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div class="form-group col-md-4">
+      <label for="imageUrl_modul">URL de Imagen</label>
+      <input
+        type="text"
+        class="form-control"
+        id="imageUrl_modul"
+        formControlName="imageUrl_modul"
+      />
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="name_modul">Nombre del Módulo</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name_modul"
+        formControlName="name_modul"
+      />
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="teacher_modul">Profesor</label>
+      <input
+        type="text"
+        class="form-control"
+        id="teacher_modul"
+        formControlName="teacher_modul"
+      />
     </div>
   </div>
-  
+
+  <div class="row">
+    <div class="form-group col-md-4">
+      <label for="numberStudents_modul">Número de Estudiantes</label>
+      <input
+        type="number"
+        class="form-control"
+        id="numberStudents_modul"
+        formControlName="numberStudents_modul"
+      />
+    </div>
+
+    <div class="form-group col-md-4">
+      <!-- <label for="dateStart_modul">Fecha de Inicio</label>
+      <input
+        type="date"
+        class="form-control"
+        id="dateStart_modul"
+        formControlName="dateStart_modul"
+      /> -->
+    </div>
+
+    <div class="form-group col-md-4">
+      <!-- <label for="dateEnd_modul">Fecha de Fin</label> -->
+      <!-- <input
+        type="date"
+        class="form-control"
+        id="dateEnd_modul"
+        formControlName="dateEnd_modul"
+      /> -->
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-4">
+      <label for="type_modul">Tipo de Módulo</label>
+      <input
+        type="text"
+        class="form-control"
+        id="type_modul"
+        formControlName="type_modul"
+      />
+    </div>
+
+    <div class="form-group col-md-8">
+      <label for="description_modul">Descripción</label>
+      <textarea
+        class="form-control"
+        id="description_modul"
+        formControlName="description_modul"
+    ></textarea>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Agregar Módulo</button>
+</form>

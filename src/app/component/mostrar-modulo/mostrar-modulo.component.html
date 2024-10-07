@@ -1,9 +1,12 @@
-<div class="card">
-    <div class="card-body">
-      <h5 class="card-title">{{modul.name_modul}}</h5>
-      <img [src]="modul.imageUrl_modul" alt="Imagen del módulo" class="img-fluid">
-      <p class="card-text">{{modul.description_modul}}</p>
-      <!-- Otros detalles del módulo -->
-    </div>
+<div *ngFor="let modul of moduls" class="card mb-3">
+  <div class="card-body">
+    <h5 class="card-title">{{ modul.name_modul }}</h5>
+    <img [src]="modul.imageUrl_modul" alt="Imagen del módulo" class="img-fluid">
+    <p class="card-text"><strong>Descripcion:</strong>{{ modul.description_modul }}</p>
+    <p><strong>Profesor:</strong> {{ modul.teacher_modul }}</p>
+    <p><strong>Número de Estudiantes:</strong> {{ modul.numberStudents_modul }}</p>
+    <!-- <p><strong>Fecha de Inicio:</strong> {{ modul.dateStart_modul | date }}</p>
+    <p><strong>Fecha de Fin:</strong> {{ modul.dateEnd_modul | date }}</p> -->
+    <p><strong>Tipo:</strong> {{ modul.type_modul }}</p>
   </div>
-  
+</div>

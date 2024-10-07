@@ -1,27 +1,29 @@
-<div class="container">
-  <app-navbar/>
-  
-  <div class="row mt-4">
-    <div class="col-md-4">
-      <app-crear-modulo (addModul)="addModul($event)"></app-crear-modulo>
+<div class="container mt-4">
+  <div class="border rounded p-3"> <!-- Agregado un borde y margen -->
+    <app-navbar></app-navbar>
+    
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <app-crear-modulo (addModul)="addModul($event)"></app-crear-modulo>
+      </div>
+      
+      <div class="col-md-4">
+        <app-lista-modulo 
+          [moduls]="moduls" 
+          (selectModul)="selectModul($event)" 
+          (deleteModul)="deleteModul($event)"></app-lista-modulo>
+      </div>
     </div>
     
-    <div class="col-md-8">
-      <app-lista-modulo 
-        [moduls]="moduls" 
-        (selectModul)="selectModul($event)" 
-        (deleteModul)="deleteModul($event)"></app-lista-modulo>
+    <div *ngIf="selectedModul" class="mt-4">
+      <h3>Editar Módulo</h3>
+      <app-editar-modulo 
+        [modul]="selectedModul" 
+        (updateModul)="updateModul($event)"></app-editar-modulo>
     </div>
+    
+    <app-mostrar-modulo 
+      *ngIf="moduls.length > 0" 
+      [moduls]="moduls"></app-mostrar-modulo>
   </div>
-  
-  <div *ngIf="selectedModul" class="mt-4">
-    <h3>Editar Módulo</h3>
-    <app-editar-modulo 
-      [modul]="selectedModul" 
-      (updateModul)="updateModul($event)"></app-editar-modulo>
-  </div>
-  
-  <app-mostrar-modulo 
-    *ngIf="moduls.length > 0" 
-    [moduls]="moduls"></app-mostrar-modulo>
 </div>

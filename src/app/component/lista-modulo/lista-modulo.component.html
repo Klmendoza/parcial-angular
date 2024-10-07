@@ -1,4 +1,9 @@
 <ul class="list-group">
-    <li *ngFor="let type of uniqueTypes" class="list-group-item">{{ type }}</li>
-  </ul>
-  
+  <p class="h1">Módulos</p>
+  <li *ngFor="let modul of moduls" class="list-group-item">
+    <h5 class="card-title">{{ modul.name_modul }}</h5>
+    <p class="card-text">{{ modul.description_modul }}</p>
+    <!-- <button (click)="selectModul.emit(modul)">Editar</button> -->
+    <button class="btn btn-danger" (click)="deleteModul.emit(modul)">Eliminar</button>
+  </li>
+</ul>

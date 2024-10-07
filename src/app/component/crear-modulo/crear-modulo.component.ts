@@ -1,44 +1,35 @@
-import { Component, EventEmitter, NgModule, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ModulInterface } from '../../interfaces/modul.interface';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms'; // Importar ReactiveFormsModule
 
 @Component({
   selector: 'app-crear-modulo',
   standalone: true,
-  imports:[NgForm],
   templateUrl: './crear-modulo.component.html',
-  styleUrls: ['./crear-modulo.component.scss']
+  styleUrls: ['./crear-modulo.component.scss'],
+  imports: [ReactiveFormsModule] // Agregar ReactiveFormsModule aquí
 })
 export class CrearModuloComponent {
   @Output() addModul = new EventEmitter<ModulInterface>();
+  newModulForm: FormGroup;
 
-  newModul: ModulInterface = {
-    id_modul: 0,
-    name_modul: '',
-    imageUrl_modul: '',
-    teacher_modul: '',
-    numberStudents_modul: 0,
-    description_modul: '',
-    dateStart_modul: new Date(),
-    dateEnd_modul: new Date(),
-    type_modul: ''
-  };
+  constructor(private fb: FormBuilder) {
+    this.newModulForm = this.fb.group({
+      name_modul: ['', Validators.required],
+      imageUrl_modul: ['', Validators.required],
+      teacher_modul: ['', Validators.required],
+      numberStudents_modul: [0, [Validators.required, Validators.min(1)]],
+      description_modul: ['', Validators.required],
+      dateStart_modul: [new Date(), Validators.required],
+      dateEnd_modul: [new Date(), Validators.required],
+      type_modul: ['', Validators.required]
+    });
+  }
 
-  onSubmit(form: NgForm) {
-    if (form.valid) {
-      this.addModul.emit(this.newModul);
-      // Resetear el formulario
-      this.newModul = {
-        id_modul: 0,
-        name_modul: '',
-        imageUrl_modul: '',
-        teacher_modul: '',
-        numberStudents_modul: 0,
-        description_modul: '',
-        dateStart_modul: new Date(),
-        dateEnd_modul: new Date(),
-        type_modul: ''
-      };
+  onSubmit() {
+    if (this.newModulForm.valid) {
+      this.addModul.emit(this.newModulForm.value);
+      this.newModulForm.reset();
     } else {
       alert('Por favor complete todos los campos.');
     }
